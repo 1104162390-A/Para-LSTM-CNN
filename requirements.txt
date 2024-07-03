@@ -1,0 +1,4 @@
+tensorflow-gpu==2.8.0
+h5py==3.6.0
+Keras==2.8.0
+numpy==1.22.4
