@@ -3,7 +3,7 @@ In this git repository a Para-LSTM-CNN algorithm based on parallel features extr
 
 If you're using our code, please cite our paper (available on https://...):
 
-    (High-definition frame diagram image of the Para-LSTM-CNN will be updated )
+    (Note: High-definition frame diagram image of the Para-LSTM-CNN will be updated )
 
 
 ![proposed Architecture](https://github.com/1104162390-A/Para-LSTM-CNN/blob/main/Para-Struture_of_LSTM-CNN.png)
