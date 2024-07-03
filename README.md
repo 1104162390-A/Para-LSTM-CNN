@@ -4,7 +4,7 @@ In this git repository a Para-LSTM-CNN algorithm based on parallel features extr
 If you're using our code, please cite our paper (available on https://):
 
 
-![proposed Architecture](https://github.com/isukrit/encodingHumanActivity/blob/master/sensors_architecture.PNG)
+![proposed Architecture](https://github.com/1104162390-A/Para-LSTM-CNN/blob/main/Para-Struture_of_LSTM-CNN.png)
 
 We have added codes for two of models that we tested:
 - Baseline CNN + LSTM model
