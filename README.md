@@ -1,5 +1,5 @@
-# Deep ConvLSTM with self-attention for human activity decoding using wearables.
-In this git repository we implement the proposed novel architecture for encoding human activity data for body sensors. The proposed model encodes the sensor data in both the spatial domain (whereby it selects important sensors) and the time domain (whereby it selects important time points). 
+# Wearable Electronic Glove and Multi-layer Parallel LSTM-CNN based Method for Sign Language Recognition.
+In this git repository a Para-LSTM-CNN algorithm based on parallel features extraction strategy is proposed. The temporal and spatial features of the sensor signals are extracted through long short-term memory (LSTM) and convolutional neural network (CNN), respectively. The Para-LSTM-CNN can effectively improve the accuracy of sign language recognition by fusing spatial and temporal features synchronously.
 
 If you're using our code, please cite our paper (available on [ArXiV](https://arxiv.org/abs/2005.00698)):
 [S. P. Singh, M. K. Sharma, A. Lay-Ekuakille, D. Gangwar and S. Gupta, "Deep ConvLSTM with self-attention for human activity decoding using wearable sensors," in IEEE Sensors Journal, doi: 10.1109/JSEN.2020.3045135.](https://ieeexplore.ieee.org/document/9296308)
