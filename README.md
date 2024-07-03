@@ -2,7 +2,8 @@
 In this git repository a Para-LSTM-CNN algorithm based on parallel features extraction strategy is proposed. The temporal and spatial features of the sensor signals are extracted through long short-term memory (LSTM) and convolutional neural network (CNN), respectively. The Para-LSTM-CNN can effectively improve the accuracy of sign language recognition by fusing spatial and temporal features synchronously.
 
 If you're using our code, please cite our paper (available on https://...):
-(Frame diagram of the Para-LSTM-CNN will be updated to high-definition images)
+
+    (high-definition frame diagram images of the Para-LSTM-CNN will be updated  )
 
 
 ![proposed Architecture](https://github.com/1104162390-A/Para-LSTM-CNN/blob/main/Para-Struture_of_LSTM-CNN.png)
