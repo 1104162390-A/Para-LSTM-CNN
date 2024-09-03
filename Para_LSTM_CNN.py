@@ -1,10 +1,79 @@
+class Para_LSTM_CN(Model):
+    def __init__(self, **kwargs):
+        super(Para_LSTM_CN, self).__init__(**kwargs)
+        # **************************************** Conv_1 ****************************************
+        self.conv_c1 = Conv2D(filters=20, kernel_size=(1, 1), padding='same')
+        self.conv_a1 = Activation('relu')
+        self.conv_c2 = Conv2D(filters=20, kernel_size=(3, 3), padding='same', )
+        self.conv_a2 = Activation('relu')
+        self.conv_c3 = Conv2D(filters=20, kernel_size=(5, 5), padding='same', )
+        self.conv_a3 = Activation('relu')
+        self.conv_p4 = MaxPool2D(pool_size=(3, 3), strides=1, padding='same')
+        self.conv_c4 = Conv2D(filters=20, kernel_size=(1, 1), padding='same', )
+        self.conv_a4 = Activation('relu')
+        # **************************************** Conv_2 ****************************************
+        self.conv2_c1 = Conv2D(filters=10, kernel_size=(1, 1), padding='same')
+        self.conv2_a1 = Activation('relu')
+        self.conv2_c2 = Conv2D(filters=10, kernel_size=(3, 3), padding='same', )
+        self.conv2_a2 = Activation('relu')
+        self.conv2_c3 = Conv2D(filters=10, kernel_size=(5, 5), padding='same', )
+        self.conv2_a3 = Activation('relu')
+        self.conv2_p4 = MaxPool2D(pool_size=(3, 3), strides=1, padding='same')
+        self.conv2_c4 = Conv2D(filters=10, kernel_size=(1, 1), padding='same', )
+        self.conv2_a4 = Activation('relu')
+        # **************************************** Conv_3 ****************************************
+        self.conv3_c1 = Conv2D(filters=20, kernel_size=(3, 3), padding='same')
+        self.conv3_a1 = Activation('relu')
+        # **************************************** LSTM ****************************************
+        self.sq_layer_lstm = Lambda(lambda x: K.squeeze(x, axis=1))
+        self.LSTM_1 = LSTM(60, return_sequences=True)
+        self.LSTM_2 = LSTM(20, return_sequences=True)
+        self.add_layer_LSTM = Lambda(lambda x: tf.expand_dims(x, axis=1))
+        self.BN = BatchNormalization()
+        self.GAP = GlobalAveragePooling2D()
+        self.f1 = Dense(26, activation='softmax')
+        # **************************************** Conv_4 ****************************************
+        self.conv4_c1 = Conv2D(filters=20, kernel_size=(3, 3), padding='same')
+        self.conv4_a1 = Activation('relu')
+        self.conv4_d1 = Dropout(0.1)
+
+    def call(self, x):
+        x_1_1 = self.conv_c1(x)
+        x_1_1 = self.conv_a1(x_1_1)
+        x_1_2 = self.conv_c2(x)
+        x_1_2 = self.conv_a2(x_1_2)
+        x_1_3 = self.conv_c3(x)
+        x_1_3 = self.conv_a3(x_1_3)
+        x_1_4 = self.conv_p4(x)
+        x_1_4 = self.conv_c4(x_1_4)
+        x_1_4 = self.conv_a4(x_1_4)
+        x1 = tf.concat([x_1_1, x_1_2, x_1_3, x_1_4], axis=3)
+        x_2_1 = self.conv2_c1(x1)
+        x_2_1 = self.conv2_a1(x_2_1)
+        x_2_2 = self.conv2_c2(x1)
+        x_2_2 = self.conv2_a2(x_2_2)
+        x_2_3 = self.conv2_c3(x1)
+        x_2_3 = self.conv2_a3(x_2_3)
+        x_2_4 = self.conv2_p4(x1)
+        x_2_4 = self.conv2_c4(x_2_4)
+        x_2_4 = self.conv2_a4(x_2_4)
+        x2 = tf.concat([x_2_1, x_2_2, x_2_3, x_2_4], axis=3)
+        Out_CNN = self.conv3_c1(x2)
+        Out_CNN = self.conv3_a1(Out_CNN)
+        x_squeeze = self.sq_layer_lstm(x)
+        x_LSMT_1 = self.LSTM_1(x_squeeze)
+        x_LSMT_2 = self.LSTM_2(x_LSMT_1)
+        Out_LSTM = self.add_layer_LSTM(x_LSMT_2)
+        Out_of_CNN_and_LSTM = tf.concat([Out_CNN, Out_LSTM], axis=3)
+        x_4_1 = self.conv4_c1(Out_of_CNN_and_LSTM)
+        x_4_1 = self.conv4_b1(x_4_1)
+        x_4_1 = self.conv4_a1(x_4_1)
+        Out_of_CNN_and_LSTM = self.conv4_d1(x_4_1)
+
+        Out_of_CNN_and_LSTM = self.GAP(Out_of_CNN_and_LSTM)
+        self.BN(Out_of_CNN_and_LSTM)
+        y = self.f1(Out_of_CNN_and_LSTM)
+        return y
+model = Para_LSTM_CN()
 
 
-
-'''
-
-Note: Available source code will be released after the paper accepted.
-Note: Available source code will be released after the paper accepted.
-Note: Available source code will be released after the paper accepted.
-
-'''
