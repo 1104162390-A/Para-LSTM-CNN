@@ -10,7 +10,7 @@ If you're using our code, please cite our paper (Available on https://...):
 
 
 
-![proposed Architecture](https://github.com/1104162390-A/Para-LSTM-CNN/blob/main/Para-Struture_of_LSTM-CNN.png)
+![proposed Architecture](https://github.com/1104162390-A/Para-LSTM-CNN/blob/main/Wang5.png)
 
 We have added codes for models that we tested:
 - Para-LSTM-CNN model 
